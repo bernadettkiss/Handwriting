@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0204E921B9B98D00495A67 /* Handwriting.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF0204E821B9B98C00495A67 /* Handwriting.mlmodel */; };
 		CFF313DA21B85652008AA1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF313D921B85652008AA1CB /* AppDelegate.swift */; };
 		CFF313DC21B85652008AA1CB /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF313DB21B85652008AA1CB /* DrawingViewController.swift */; };
 		CFF313DF21B85652008AA1CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF313DD21B85652008AA1CB /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0204E821B9B98C00495A67 /* Handwriting.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Handwriting.mlmodel; sourceTree = "<group>"; };
 		CFF313D621B85652008AA1CB /* Handwriting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handwriting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF313D921B85652008AA1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF313DB21B85652008AA1CB /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				CFF313D921B85652008AA1CB /* AppDelegate.swift */,
 				CFF313DB21B85652008AA1CB /* DrawingViewController.swift */,
 				CFF313DD21B85652008AA1CB /* Main.storyboard */,
+				CF0204E821B9B98C00495A67 /* Handwriting.mlmodel */,
 				CFF313E021B85654008AA1CB /* Assets.xcassets */,
 				CFF313E221B85654008AA1CB /* LaunchScreen.storyboard */,
 				CFF313E521B85654008AA1CB /* Info.plist */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF0204E921B9B98D00495A67 /* Handwriting.mlmodel in Sources */,
 				CFF313DC21B85652008AA1CB /* DrawingViewController.swift in Sources */,
 				CFF313DA21B85652008AA1CB /* AppDelegate.swift in Sources */,
 			);
@@ -285,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5BWY3VMTWF;
 				INFOPLIST_FILE = Handwriting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5BWY3VMTWF;
 				INFOPLIST_FILE = Handwriting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreML
+import Vision
 
 class DrawingViewController: UIViewController {
     
@@ -21,6 +23,8 @@ class DrawingViewController: UIViewController {
     }
     
     @IBAction func predictButtonPressed(_ sender: UIButton) {
+        guard let predictionImage = drawingImageView.image else { return }
+        makePrediction(image(with: predictionImage, scaledTo: CGSize(width: 28.0, height: 28.0)))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,5 +67,45 @@ class DrawingViewController: UIViewController {
         drawingImageView.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
     }
+    
+    private func makePrediction(_ image: UIImage) {
+        guard let model = try? VNCoreMLModel(for: Handwriting().model) else { return }
+        let request = VNCoreMLRequest(model: model, completionHandler: resultsMethod)
+        guard let ciImage = CIImage(image: image) else { return }
+        let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+        do {
+            try handler.perform([request])
+        } catch {
+            debugPrint(error)
+        }
+    }
+    
+    private func resultsMethod(request: VNRequest, error: Error?) {
+        guard let results = request.results,
+            let resultsArray = results[0] as? VNCoreMLFeatureValueObservation,
+            let multiArrayValue = resultsArray.featureValue.multiArrayValue else { return }
+        var prediction: NSNumber = 0
+        var compare: NSNumber = 0
+        var atIndex: Int = 0
+        var i: Int = 0
+        
+        while i < multiArrayValue.count {
+            compare = multiArrayValue[i]
+            if compare.floatValue > prediction .floatValue {
+                prediction = compare
+                atIndex = i
+            }
+            i += 1
+        }
+        predictionLabel.text = "Digit may be: \(atIndex)"
+    }
+    
+    private func image(with image: UIImage, scaledTo newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        drawingImageView.image = newImage
+        return newImage ?? UIImage()
+    }
 }
-
